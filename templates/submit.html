@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Submit Form</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Thank you for submitting the form!</h1>
+    <p>Description: {{ crimetitle }}</p>
+    <p>Location: {{ crimelocation }}</p>
+    <p>Danger: {{ crimedangerous }}</p>
+
+    <script>
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(position => {
+                const lng = position.coords.longitude;
+                const lat = position.coords.latitude;
+                const message = `Your location: ${lat}, ${lng}`;
+                alert(message);
+            }, error => console.error(error));
+        } else {
+            console.error('Geolocation is not supported by this browser.');
+        }
+    </script>
+</body>
+</html>
