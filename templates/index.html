@@ -1,0 +1,52 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SAS Reporting Service</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>SAS Reporting Service</h1>
+        <div>
+            <h4>Please allow the location for this webpage!</h4>
+            <h4>Please paste the location from the alert service.</h4>
+            </div>
+    </header>
+
+    <main>
+        <section id="crime-form">
+            <h2>Report a Crime</h2>
+            <form action="/submit" method="POST">
+                <label for="crime-description" class="label">Crime Description:</label>
+                <input type="text" id="crime-description" name="crime-description" class="input">
+
+                <label for="your-location" class="label">Your Location:</label>
+                <input type="text" id="your-location" name="your-location" class="input">
+
+                <input type="submit" value="Submit" class="submit-btn">
+            </form>
+        </section>
+
+        <section id="location-info">
+            <script>
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(position => {
+                        const lng = position.coords.longitude;
+                        const lat = position.coords.latitude;
+                        const message = `Your location: ${lat}, ${lng}`;
+                        alert(message);
+                    }, error => console.error(error));
+                } else {
+                    console.error('Geolocation is not supported by this browser.');
+                }
+            </script>
+        </section>
+    </main> 
+
+    <footer>
+        &copy; 2023 SAS Reporting Service
+    </footer>
+</body>
+</html>
